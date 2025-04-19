@@ -43,6 +43,45 @@ function App() {
         <Toaster position="top-right" />
         <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
         <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+
+        <main className="container mx-auto px-4 py-8">
+          <div className="max-w-3xl mx-auto">
+            <div className="mb-8 text-center">
+              <h1 className={`text-3xl md:text-4xl font-bold mb-3 ${
+                darkMode ? 'text-white' : 'text-gray-800'
+              }`}>
+                Voice Task Manager
+              </h1>
+              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                Add tasks by typing or using your voice
+              </p>
+            </div>
+            
+            <TaskForm onAddTask={addTask} darkMode={darkMode} />
+            
+            <TaskFilters
+              filters={filters}
+              onFiltersChange={setFilters}
+              darkMode={darkMode}
+            />
+            
+            {loading ? (
+              <div className="flex justify-center items-center py-12">
+                <LoadingSpinner size={32} className="text-indigo-600" />
+              </div>
+            ) : (
+              <TaskList 
+                tasks={tasks}
+                onToggleTask={toggleTask}
+                onDeleteTask={deleteTask}
+                onUpdateTask={updateTask}
+                sortBy={sortBy}
+                onSortChange={(sort: SortOption) => setSortBy(sort)}
+                darkMode={darkMode}
+              />
+            )}
+          </div>
+        </main>
         
         <Footer darkMode={darkMode} />
       </div>
