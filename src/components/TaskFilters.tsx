@@ -69,3 +69,23 @@ export const TaskFilterComponent: React.FC<TaskFiltersProps> = ({
               ))}
             </select>
           </div>
+
+
+          <div className="flex-1 min-w-[150px]">
+            <label className={`block text-sm font-medium mb-1 ${
+              darkMode ? 'text-gray-300' : 'text-gray-700'
+            }`}>
+              Priority
+            </label>
+            <select
+              value={filters.priority}
+              onChange={(e) => onFiltersChange({ 
+                ...filters, 
+                priority: e.target.value as Priority | 'all' 
+              })}
+              className={`w-full px-3 py-2 rounded-lg text-sm ${
+                darkMode 
+                  ? 'bg-gray-700 text-white border-gray-600' 
+                  : 'bg-gray-50 text-gray-800 border-gray-200'
+              } border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300`}
+            >
