@@ -104,3 +104,27 @@ export const TaskFilterComponent: React.FC<TaskFiltersProps> = ({
             }`}>
               Status
             </label>
+            <select
+              value={filters.status}
+              onChange={(e) => onFiltersChange({ 
+                ...filters, 
+                status: e.target.value as 'all' | 'completed' | 'active' 
+              })}
+              className={`w-full px-3 py-2 rounded-lg text-sm ${
+                darkMode 
+                  ? 'bg-gray-700 text-white border-gray-600' 
+                  : 'bg-gray-50 text-gray-800 border-gray-200'
+              } border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300`}
+            >
+              {statuses.map(status => (
+                <option key={status} value={status}>
+                  {status.charAt(0).toUpperCase() + status.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
