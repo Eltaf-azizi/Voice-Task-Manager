@@ -40,3 +40,32 @@ export const TaskFilterComponent: React.FC<TaskFiltersProps> = ({
             } border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300`}
           />
         </div>
+
+
+        <div className="flex flex-wrap gap-4">
+          <div className="flex-1 min-w-[150px]">
+            <label className={`block text-sm font-medium mb-1 ${
+              darkMode ? 'text-gray-300' : 'text-gray-700'
+            }`}>
+              Category
+            </label>
+            <select
+              value={filters.category}
+              onChange={(e) => onFiltersChange({ 
+                ...filters, 
+                category: e.target.value as Category | 'all' 
+              })}
+              className={`w-full px-3 py-2 rounded-lg text-sm ${
+                darkMode 
+                  ? 'bg-gray-700 text-white border-gray-600' 
+                  : 'bg-gray-50 text-gray-800 border-gray-200'
+              } border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300`}
+            >
+              <option value="all">All Categories</option>
+              {categories.map(category => (
+                <option key={category} value={category}>
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
