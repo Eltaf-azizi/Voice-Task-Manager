@@ -89,3 +89,18 @@ export const TaskFilterComponent: React.FC<TaskFiltersProps> = ({
                   : 'bg-gray-50 text-gray-800 border-gray-200'
               } border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300`}
             >
+              <option value="all">All Priorities</option>
+              {priorities.map(priority => (
+                <option key={priority} value={priority}>
+                  {priority.charAt(0).toUpperCase() + priority.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="flex-1 min-w-[150px]">
+            <label className={`block text-sm font-medium mb-1 ${
+              darkMode ? 'text-gray-300' : 'text-gray-700'
+            }`}>
+              Status
+            </label>
