@@ -209,3 +209,32 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, darkMode }) => {
               )}
             </button>
           )}
+
+          <button
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={`px-4 py-2.5 rounded-lg transition-all duration-300 ${
+              darkMode 
+                ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+                : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+            }`}
+          >
+            {isExpanded ? 'Less Options' : 'More Options'}
+          </button>
+          
+          <button
+            type="submit"
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-all duration-300 ${
+              !inputValue.trim() ? 'opacity-70 cursor-not-allowed' : ''
+            }`}
+            disabled={!inputValue.trim()}
+            aria-label="Add task"
+          >
+            <Plus size={18} />
+            <span>Add Task</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
