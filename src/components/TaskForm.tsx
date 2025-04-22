@@ -48,3 +48,36 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, darkMode }) => {
       setIsExpanded(false);
     }
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+  
+  return (
+    <div className={`mb-8 p-6 rounded-lg shadow-sm ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+      {error && (
+        <div className="mb-4 p-3 text-sm rounded bg-red-100 text-red-700">
+          {error}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="relative">
+          <input
+            ref={inputRef}
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Add a new task..."
+            className={`w-full px-4 py-3 rounded-lg text-base ${
+              darkMode 
+                ? 'bg-gray-700 text-white placeholder-gray-400 border-gray-600' 
+                : 'bg-gray-50 text-gray-800 placeholder-gray-500 border-gray-200'
+            } border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300`}
+            aria-label="Task description"
+          />
+        </div>
