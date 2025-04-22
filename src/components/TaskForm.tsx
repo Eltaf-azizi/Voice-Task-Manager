@@ -23,4 +23,28 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, darkMode }) => {
     stopListening, 
     hasRecognitionSupport,
     error 
-  }
+  }  = useSpeechRecognition();
+  
+  const inputRef = useRef<HTMLInputElement>(null);
+  
+  useEffect(() => {
+    if (speechText) {
+      setInputValue(speechText);
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }
+  }, [speechText]);
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (inputValue.trim()) {
+      onAddTask(inputValue, priority, category, dueDate || undefined, notes || undefined);
+      setInputValue('');
+      setPriority('medium');
+      setCategory('personal');
+      setDueDate('');
+      setNotes('');
+      setIsExpanded(false);
+    }
+  };
