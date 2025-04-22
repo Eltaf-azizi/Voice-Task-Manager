@@ -106,3 +106,31 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, darkMode }) => {
                 />
               </div>
             </div>
+
+            <div>
+              <label className={`block text-sm font-medium mb-1 ${
+                darkMode ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                Category
+              </label>
+              <div className="relative">
+                <Tag size={18} className={`absolute left-3 top-1/2 -translate-y-1/2 ${
+                  darkMode ? 'text-gray-400' : 'text-gray-500'
+                }`} />
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value as Category)}
+                  className={`w-full pl-10 pr-4 py-2 rounded-lg text-sm ${
+                    darkMode 
+                      ? 'bg-gray-700 text-white border-gray-600' 
+                      : 'bg-gray-50 text-gray-800 border-gray-200'
+                  } border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300`}
+                >
+                  <option value="personal">Personal</option>
+                  <option value="work">Work</option>
+                  <option value="shopping">Shopping</option>
+                  <option value="health">Health</option>
+                  <option value="finance">Finance</option>
+                </select>
+              </div>
+            </div>
