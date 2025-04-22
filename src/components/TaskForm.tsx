@@ -181,3 +181,31 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, darkMode }) => {
             </div>
           </div>
         )}
+
+        <div className="flex gap-2">
+          {hasRecognitionSupport && (
+            <button
+              type="button"
+              onClick={isListening ? stopListening : startListening}
+              className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg transition-all duration-300 ${
+                isListening 
+                  ? 'bg-red-500 hover:bg-red-600 text-white' 
+                  : darkMode 
+                    ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+                    : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+              }`}
+              aria-label={isListening ? "Stop listening" : "Start voice input"}
+            >
+              {isListening ? (
+                <>
+                  <MicOff size={18} />
+                  <span className="hidden sm:inline">Stop</span>
+                </>
+              ) : (
+                <>
+                  <Mic size={18} />
+                  <span className="hidden sm:inline">Speak Task</span>
+                </>
+              )}
+            </button>
+          )}
