@@ -75,3 +75,29 @@ export const TaskItem: React.FC<TaskItemProps> = ({
             )}
           </div>
           
+          <div className="flex items-center gap-3 mt-1">
+            <span className={`text-sm flex items-center gap-1 ${priorityColors[task.priority]}`}>
+              <AlertCircle size={14} />
+              {task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}
+            </span>
+            
+            <span className={`text-sm flex items-center gap-1 ${
+              darkMode ? 'text-gray-400' : 'text-gray-500'
+            }`}>
+              <Tag size={14} />
+              {task.category.charAt(0).toUpperCase() + task.category.slice(1)}
+            </span>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={`p-1.5 rounded-full transition-all duration-300 ${
+              darkMode 
+                ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-700' 
+                : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'
+            }`}
+          >
+            {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </button>
