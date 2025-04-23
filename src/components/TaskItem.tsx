@@ -53,3 +53,25 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         >
           {task.completed && <Check size={14} className="text-white" />}
         </button>
+
+        <div className="flex-grow">
+          <div className="flex items-center gap-2">
+            <span 
+              className={`${
+                task.completed 
+                  ? 'line-through text-gray-500' 
+                  : darkMode ? 'text-gray-200' : 'text-gray-700'
+              } transition-all duration-300`}
+            >
+              {task.text}
+            </span>
+            
+            {task.dueDate && (
+              <span className={`text-sm ${
+                darkMode ? 'text-gray-400' : 'text-gray-500'
+              }`}>
+                · Due {formatDate(task.dueDate)}
+              </span>
+            )}
+          </div>
+          
