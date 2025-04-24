@@ -59,3 +59,25 @@ export const TaskList: React.FC<TaskListProps> = ({
                 : 'bg-gray-50 text-gray-800 border-gray-200'
             } border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300`}
           >
+
+            <option value="createdAt">Date Created</option>
+            <option value="dueDate">Due Date</option>
+            <option value="priority">Priority</option>
+            <option value="alphabetical">Alphabetical</option>
+          </select>
+        </div>
+      </div>
+      
+      {tasks.map((task) => (
+        <TaskItem
+          key={task.id}
+          task={task}
+          onToggle={onToggleTask}
+          onDelete={onDeleteTask}
+          onUpdate={onUpdateTask}
+          darkMode={darkMode}
+        />
+      ))}
+    </div>
+  );
+};
