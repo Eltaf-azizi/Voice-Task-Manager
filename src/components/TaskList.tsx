@@ -37,3 +37,25 @@ export const TaskList: React.FC<TaskListProps> = ({
       </div>
     );
   }
+
+  
+  return (
+    <div>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className={`text-lg font-semibold ${
+          darkMode ? 'text-gray-200' : 'text-gray-700'
+        }`}>
+          Tasks ({tasks.length})
+        </h2>
+        
+        <div className="flex items-center gap-2">
+          <ArrowUpDown size={16} className={darkMode ? 'text-gray-400' : 'text-gray-500'} />
+          <select
+            value={sortBy}
+            onChange={(e) => onSortChange(e.target.value as SortOption)}
+            className={`text-sm px-2 py-1 rounded-lg ${
+              darkMode 
+                ? 'bg-gray-700 text-white border-gray-600' 
+                : 'bg-gray-50 text-gray-800 border-gray-200'
+            } border focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300`}
+          >
