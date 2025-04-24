@@ -13,3 +13,18 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ darkMode, setDarkMode 
       setDarkMode(true);
     } else if (savedTheme === 'light') {
       setDarkMode(false);
+    } else {
+      // Use system preference as default
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(prefersDark);
+    }
+  }, [setDarkMode]);
+
+  // Update localStorage and apply theme when darkMode changes
+  useEffect(() => {
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', darkMode);
+  }, [darkMode]);
+
+  return null;
+};
