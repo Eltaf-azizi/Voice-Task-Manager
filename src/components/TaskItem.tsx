@@ -101,3 +101,30 @@ export const TaskItem: React.FC<TaskItemProps> = ({
           >
             {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
           </button>
+
+          <button
+            onClick={() => onDelete(task.id)}
+            className={`p-1.5 rounded-full transition-all duration-300 ${
+              darkMode 
+                ? 'text-gray-400 hover:text-red-400 hover:bg-gray-700' 
+                : 'text-gray-400 hover:text-red-500 hover:bg-gray-100'
+            }`}
+            aria-label="Delete task"
+          >
+            <Trash2 size={16} />
+          </button>
+        </div>
+      </div>
+      
+      {isExpanded && task.notes && (
+        <div className={`px-4 pb-4 pt-0 ${
+          darkMode ? 'text-gray-300' : 'text-gray-600'
+        }`}>
+          <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-sm whitespace-pre-wrap">{task.notes}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
