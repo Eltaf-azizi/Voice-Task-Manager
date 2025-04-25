@@ -77,4 +77,18 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
       const transcript = event.results[0][0].transcript;
       setText(transcript);
     };
+    
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+    
+    recognition.start();
+  }, [hasRecognitionSupport]);
   
+  const stopListening = useCallback(() => {
+    if (recognition) {
+      recognition.stop();
+      setIsListening(false);
+    }
+  }, []);
