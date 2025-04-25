@@ -53,4 +53,28 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
       }
     };
   }, [hasRecognitionSupport]);
+
+  
+  const startListening = useCallback(() => {
+    setText('');
+    setError(null);
+    
+    if (!hasRecognitionSupport) {
+      setError('Your browser does not support speech recognition');
+      return;
+    }
+    
+    setIsListening(true);
+    
+    const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+    recognition = new SpeechRecognition();
+    
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+    
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript;
+      setText(transcript);
+    };
   
