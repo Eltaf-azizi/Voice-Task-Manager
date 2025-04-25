@@ -92,3 +92,21 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
       setIsListening(false);
     }
   }, []);
+
+  return {
+    text,
+    isListening,
+    startListening,
+    stopListening,
+    hasRecognitionSupport,
+    error
+  };
+}
+
+// Declare global type for window
+declare global {
+  interface Window {
+    webkitSpeechRecognition: any;
+    SpeechRecognition: any;
+  }
+}
