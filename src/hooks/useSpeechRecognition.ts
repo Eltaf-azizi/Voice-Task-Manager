@@ -14,11 +14,14 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
   const [isListening, setIsListening] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
+  
   // Check if browser supports speech recognition
   const hasRecognitionSupport = 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window;
 
+
   let recognition: any = null;
   
+
   // Initialize speech recognition
   useEffect(() => {
     if (!hasRecognitionSupport) return;
@@ -34,3 +37,20 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
       const transcript = event.results[0][0].transcript;
       setText(transcript);
     };
+
+
+    recognition.onerror = (event: any) => {
+      setError(`Error occurred in recognition: ${event.error}`);
+    };
+    
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+    
+    return () => {
+      if (recognition) {
+        recognition.stop();
+      }
+    };
+  }, [hasRecognitionSupport]);
+  
