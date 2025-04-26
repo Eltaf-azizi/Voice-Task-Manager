@@ -11,3 +11,12 @@ export interface Task {
   category: Category;
   notes?: string;
 }
+
+export interface TaskFilters {
+  search: string;
+  category: Category | 'all';
+  priority: Priority | 'all';
+  status: 'all' | 'completed' | 'active';
+}
+
+export type SortOption = 'dueDate' | 'priority' | 'createdAt' | 'alphabetical';
