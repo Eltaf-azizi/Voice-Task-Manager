@@ -20,3 +20,22 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, resetErrorBoundary }) =
         <p className="text-gray-600 text-center mb-6">
           {error.message}
         </p>
+        <button
+          onClick={resetErrorBoundary}
+          className="w-full flex items-center justify-center gap-2 bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors"
+        >
+          <RefreshCw size={18} />
+          Try again
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export const ErrorBoundary: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <ReactErrorBoundary FallbackComponent={ErrorFallback}>
+      {children}
+    </ReactErrorBoundary>
+  );
+};
