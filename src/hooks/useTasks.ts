@@ -91,3 +91,20 @@ export function useTasks() {
       throw err;
     }
   };
+
+  const toggleTask = async (id: string) => {
+    const task = tasks.find(t => t.id === id);
+    if (!task) return;
+
+    try {
+      const updatedTasks = tasks.map(t => 
+        t.id === id ? { ...t, completed: !t.completed } : t
+      );
+      setTasks(updatedTasks);
+      saveTasks(updatedTasks);
+      toast.success(task.completed ? 'Task marked as incomplete' : 'Task marked as complete');
+    } catch (err) {
+      toast.error('Failed to update task');
+      throw err;
+    }
+  };
