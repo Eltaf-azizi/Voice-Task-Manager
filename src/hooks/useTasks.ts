@@ -15,3 +15,25 @@ export function useTasks() {
     priority: 'all',
     status: 'all'
   });
+
+  const [sortBy, setSortBy] = useState<SortOption>('createdAt');
+
+  useEffect(() => {
+    loadTasks();
+  }, []);
+
+  // Load tasks from localStorage
+  const loadTasks = () => {
+    try {
+      setLoading(true);
+      const savedTasks = localStorage.getItem(STORAGE_KEY);
+      if (savedTasks) {
+        setTasks(JSON.parse(savedTasks));
+      }
+    } catch (err) {
+      setError(err as Error);
+      toast.error('Failed to load tasks');
+    } finally {
+      setLoading(false);
+    }
+  };
