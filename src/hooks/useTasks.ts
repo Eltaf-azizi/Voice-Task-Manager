@@ -54,4 +54,22 @@ export function useTasks() {
     category: Category = 'personal',
     dueDate?: string,
     notes?: string
-  )
+  ) => {
+    try {
+      const newTask: Task = {
+        id: crypto.randomUUID(),
+        text,
+        priority,
+        category,
+        dueDate,
+        notes,
+        completed: false,
+        createdAt: Date.now()
+      };
+
+      const updatedTasks = [newTask, ...tasks];
+      setTasks(updatedTasks);
+      saveTasks(updatedTasks);
+      toast.success('Task added successfully');
+      return newTask;
+    }
