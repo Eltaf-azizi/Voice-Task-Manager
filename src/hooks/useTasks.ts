@@ -37,3 +37,21 @@ export function useTasks() {
       setLoading(false);
     }
   };
+
+  // Save tasks to localStorage
+  const saveTasks = (updatedTasks: Task[]) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedTasks));
+    } catch (err) {
+      toast.error('Failed to save tasks');
+      throw err;
+    }
+  };
+
+  const addTask = async (
+    text: string,
+    priority: Priority = 'medium',
+    category: Category = 'personal',
+    dueDate?: string,
+    notes?: string
+  )
