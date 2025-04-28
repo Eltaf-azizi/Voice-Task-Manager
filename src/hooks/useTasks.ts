@@ -72,4 +72,22 @@ export function useTasks() {
       saveTasks(updatedTasks);
       toast.success('Task added successfully');
       return newTask;
+    } catch (err) {
+      toast.error('Failed to add task');
+      throw err;
     }
+  };
+
+  const updateTask = async (id: string, updates: Partial<Task>) => {
+    try {
+      const updatedTasks = tasks.map(task => 
+        task.id === id ? { ...task, ...updates } : task
+      );
+      setTasks(updatedTasks);
+      saveTasks(updatedTasks);
+      toast.success('Task updated successfully');
+    } catch (err) {
+      toast.error('Failed to update task');
+      throw err;
+    }
+  };
