@@ -127,3 +127,21 @@ export function useTasks() {
         const matchesSearch = task.text.toLowerCase().includes(filters.search.toLowerCase()) ||
                             task.notes?.toLowerCase().includes(filters.search.toLowerCase());
         const matchesCategory = filters.category === 'all' || task.category === filters.category;
+        const matchesPriority = filters.priority === 'all' || task.priority === filters.priority;
+        const matchesStatus = filters.status === 'all' ||
+                            (filters.status === 'completed' && task.completed) ||
+                            (filters.status === 'active' && !task.completed);
+
+        return matchesSearch && matchesCategory && matchesPriority && matchesStatus;
+      })
+      .sort((a, b) => {
+        switch (sortBy) {
+          case 'dueDate':
+            if (!a.dueDate) return 1;
+            if (!b.dueDate) return -1;
+            return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+            case 'priority':
+              const priorityOrder = { high: 0, medium: 1, low: 2 };
+              return priorityOrder[a.priority] - priorityOrder[b.priority];
+            case 'alphabetical':
+              return a.text.localeCompare(b.text);
