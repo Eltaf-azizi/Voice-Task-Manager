@@ -108,3 +108,22 @@ export function useTasks() {
       throw err;
     }
   };
+
+  const deleteTask = async (id: string) => {
+    try {
+      const updatedTasks = tasks.filter(task => task.id !== id);
+      setTasks(updatedTasks);
+      saveTasks(updatedTasks);
+      toast.success('Task deleted successfully');
+    } catch (err) {
+      toast.error('Failed to delete task');
+      throw err;
+    }
+  };
+
+  const filteredAndSortedTasks = useMemo(() => {
+    return tasks
+      .filter(task => {
+        const matchesSearch = task.text.toLowerCase().includes(filters.search.toLowerCase()) ||
+                            task.notes?.toLowerCase().includes(filters.search.toLowerCase());
+        const matchesCategory = filters.category === 'all' || task.category === filters.category;
