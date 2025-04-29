@@ -145,3 +145,23 @@ export function useTasks() {
               return priorityOrder[a.priority] - priorityOrder[b.priority];
             case 'alphabetical':
               return a.text.localeCompare(b.text);
+              default:
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        }
+      });
+  }, [tasks, filters, sortBy]);
+
+  return {
+    tasks: filteredAndSortedTasks,
+    loading,
+    error,
+    addTask,
+    updateTask,
+    toggleTask,
+    deleteTask,
+    filters,
+    setFilters,
+    sortBy,
+    setSortBy
+  };
+}
