@@ -15,3 +15,19 @@ A feature-rich task management application with voice input, detailed task attri
   - Additional notes
 - **Mark tasks complete** with visual indicators
 - **Delete tasks** with confirmation
+
+### Viewing Options
+- **Expandable task details** (click arrow to view notes)
+- **Multiple filters**:
+  - By category
+  - By priority
+  - By completion status
+- **Sorting options**:
+  - By due date
+  - By priority
+  - Alphabetically
+
+### Data Handling
+- **Real-time updates** for all changes
+- **Persistent storage** using Supabase database
+- **Cross-session persistence** - tasks remain after refresh
