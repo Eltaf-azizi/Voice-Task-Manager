@@ -60,3 +60,21 @@ A feature-rich task management application with voice input, detailed task attri
 - **Backend**: Supabase (PostgreSQL database)
 - **Real-time Updates**: Supabase subscriptions
 - **Voice Recognition**: Web Speech API
+
+
+## Setup (For Developers)
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/task-manager.git
+
+# Install dependencies
+npm install
+
+# Configure environment variables
+cp .env.example .env
+# Edit .env with your Supabase credentials
+
+# Run the app
+npm start
+```
