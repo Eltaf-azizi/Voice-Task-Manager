@@ -47,3 +47,16 @@ A feature-rich task management application with voice input, detailed task attri
    - Click the circle checkbox to mark complete
    - Click the trash icon to delete (with confirmation)
    - Click the expand arrow to view notes
+
+
+3. **Finding Tasks**:
+   - Use the filter dropdowns to view specific tasks
+   - Sort tasks using the sort options
+   - Search through your task list
+
+## Technical Details
+
+- **Frontend**: React.js
+- **Backend**: Supabase (PostgreSQL database)
+- **Real-time Updates**: Supabase subscriptions
+- **Voice Recognition**: Web Speech API
