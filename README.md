@@ -31,3 +31,19 @@ A feature-rich task management application with voice input, detailed task attri
 - **Real-time updates** for all changes
 - **Persistent storage** using Supabase database
 - **Cross-session persistence** - tasks remain after refresh
+
+## How to Use
+
+1. **Adding a Task**:
+   - Type your task in the input field at the top OR
+   - Click "Speak Task" to use voice input
+   - Click "More Options" to add:
+     - Priority level
+     - Category
+     - Due date
+     - Additional notes
+
+2. **Managing Tasks**:
+   - Click the circle checkbox to mark complete
+   - Click the trash icon to delete (with confirmation)
+   - Click the expand arrow to view notes
